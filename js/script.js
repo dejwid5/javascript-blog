@@ -1,7 +1,13 @@
 'use strict';
 
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
+  
+const optArticleTagsSelector = '.post-tags .list';
 
 const titleClickHandler = function(event) {
+  
   event.preventDefault();
 
   const clickedElement = this;
@@ -33,17 +39,6 @@ const titleClickHandler = function(event) {
   targetArticle.classList.add('active');
 };
 
-const links = document.querySelectorAll('.titles a');
-for (let link of links) {
-  link.addEventListener('click', titleClickHandler);
-}
-
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
-  
-const optArticleTagsSelector = '.post-tags .list';
-
 function generateTitleLinks(){
 
   /* remove contents of titleList */
@@ -62,7 +57,6 @@ function generateTitleLinks(){
     /* get the article id */
     const articleId = article.getAttribute('id');
     console.log(articleId);
-  
 
     /* find the title element */
     const articleTitleElement = article.querySelector(optTitleSelector);
@@ -79,6 +73,13 @@ function generateTitleLinks(){
 }
 
 generateTitleLinks();
+
+const links = document.querySelectorAll('.titles a');
+
+for (let link of links) {
+  link.addEventListener('click', titleClickHandler);
+}
+
 
 function generateTags(){
   /* find all articles */
@@ -157,7 +158,7 @@ function addClickListenersToTags(){
     /* add tagClickHandler as event listener for that link */
 
   /* END LOOP: for each link */
-  }
+
 }
 
-addClickListenersToTags();
+addClickListenersToTags(); 
